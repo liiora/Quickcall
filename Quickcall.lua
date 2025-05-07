@@ -84,14 +84,8 @@ QuickCallFrame:SetScript("OnDragStop", function()
     SaveFramePosition()
 end)
 
-QuickCallFrame:SetBackdrop({
-    bgFile = "Interface\\AddOns\\QuickCall\\Quickcall.tga",
-    edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
-    tile = false,
-    edgeSize = 16,
-    insets = { left = 4, right = 4, top = 4, bottom = 4 }
-})
-QuickCallFrame:SetBackdropColor(1, 1, 1, 0.90)
+pfUI.api.CreateBackdrop(QuickCallFrame, nil, false, 0.65)
+pfUI.api.CreateBackdropShadow(QuickCallFrame)
 
 -- Title text
 local title = QuickCallFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
@@ -152,6 +146,7 @@ end
 local framePaddingX = (frameWidth - totalWidth) / 2
 for i = 1, 8 do
     local btn = CreateFrame("Button", "QuickCallButton"..i, QuickCallFrame, "UIPanelButtonTemplate")
+    pfUI.api.SkinButton(btn, .2, 1, .8)
     btn:SetWidth(buttonWidth)
     btn:SetHeight(buttonHeight)
     btn:SetText(i == 8 and "8+" or tostring(i))
@@ -169,6 +164,7 @@ end
 
 -- CLEAR button
 local clearBtn = CreateFrame("Button", "QuickCallClear", QuickCallFrame, "UIPanelButtonTemplate")
+pfUI.api.SkinButton(clearBtn, .2, 1, .8)
 clearBtn:SetWidth(totalWidth)
 clearBtn:SetHeight(buttonHeight)
 clearBtn:SetText("BASE CLEAR")
@@ -177,6 +173,7 @@ clearBtn:SetScript("OnClick", HandleClear)
 
 -- Lock/unlock toggle button
 lockBtn = CreateFrame("Button", "QuickCallLockToggle", QuickCallFrame, "UIPanelButtonTemplate")
+pfUI.api.SkinButton(lockBtn, .2, 1, .8)
 lockBtn:SetWidth(60)
 lockBtn:SetHeight(20)
 lockBtn:SetText("Lock")
